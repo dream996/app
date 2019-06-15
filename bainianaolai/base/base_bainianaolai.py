@@ -9,7 +9,7 @@ class BaseBaiNianAoLai():
 
     # 查找元素方法
     def base_find_element(self, loc, timeout=30, poll=0.5):
-        return WebDriverWait(self.driver, timeout=timeout, poll_frequency=poll).until(lambda x:x.find_element(*loc))
+        return WebDriverWait(self.driver, timeout=timeout, poll_frequency=poll).until(lambda x: x.find_element(*loc))
 
     # 点击
     def base_click(self, loc):
@@ -17,4 +17,10 @@ class BaseBaiNianAoLai():
 
     # 滑动
     def base_swipe(self):
-        self.driver.swipe(838,2275,838,382,duration=2000)
+        self.driver.swipe(838, 2275, 838, 382, duration=2000)
+
+    # 输入
+    def base_input(self, loc, val):
+        # 清空
+        el = self.base_find_element(loc).clear()
+        el.send_keys(val)
