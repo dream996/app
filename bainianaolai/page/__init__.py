@@ -26,3 +26,6 @@ test_setting = By.ID, "com.yunmall.lc:id/ymtitlebar_left_btn_image"
 test_loginout = By.ID, "com.yunmall.lc:id/setting_logout"
 # 确认
 test_yes = By.ID, "com.yunmall.lc:id/ymdialog_right_button"
+# toast
+message='//*[@text="登录密码错误"]'
+test_toast=By.XPATH,message
