@@ -29,6 +29,6 @@ class TestBaiNianAoLai:
         for i in range(5):
             self.bainianaolai.page_jiaju()
 
-        time.sleep(5)
+        time.sleep(3)
 if __name__ == '__main__':
     pytest.main("-s test_bainianaolai.py")
