@@ -1,0 +1,146 @@
+git:
+	环境搭建:
+		下载git仓库管理软件并安装
+		打开cmd运行窗口,查看版本号git version
+	配置:
+		git config --global user.name "github仓库名"
+		git config --global user.email github注册时使用的邮箱
+        注意:每次提交版本到git仓库,必须指定提交人与邮箱地址
+    常用命令:
+		git init	创建git仓库
+		git add filename	将文件添加到暂存区
+		git add .	将当前目录下所有文件添加到暂存区
+		git commit -m 备注信息	将暂存区文件提交到本地仓库
+		git status	查看git现在的状态
+		git pull https://github.com/dream996/git.git	获取最新的代码
+		git push origin master	将本地仓库推送到github上
+		git clone	克隆
+		git log		查看日志
+		git reset --hard 日志编码
+	将本地创库推送到github上:
+		本地项目还不是git仓库时,将本地项目推送到github上整个仓库
+			git init
+			git add .
+			git remote add origin https://github.com/dream996/app.git	本地创库与github绑定
+				绑定成功时,.git目录下有个config配置文件可以看到增加的url
+			git push origin master	将本地仓库推送到github上	
+		如果项目已是仓库,并且已经绑定远端仓库
+			git add .
+			git commit -m "备注信息"
+			git push origin master	将本地仓库推送到github上
+	冲突:
+		原因:
+			团队多人开发修改同一文件,并且是同一行,在push的时候,提示必须先pull,拉取服务器最新的代码,冲突就产生了
+			HEAD部分是自己的代码 ===分隔的是别人的代码
+		解决:
+			经过友好协商,删除多余代码,保留一份,重新提交即可
+
+adb常用命令:
+	adb start-server	开启服务
+	adb kill-server		杀死服务
+	adb devices		查看设备号
+	adb shell getprop ro.build.version.release	获取设备系统号
+	adb push pc端文件路径 /sdcard
+	adb pull 手机端文件路径 保存到pc端的文件路径
+	adb logcat	查看手机日志
+	adb shell dumpsys window windows | findstr usedApp	查看启动的包名
+	adb install -r 包名		覆盖安装apk
+	adb uninstall 包名	卸载应用
+	adb shell am start -W 包名/启动名	查看应用启动时间
+		TotalTime：app自身启动时间
+		
+toast提示框
+
+app:
+	desired_caps["udid"]=设备号		指定设备号
+	desired_caps['noReset']=True	不重置应用
+	desired_caps['app']="apk绝对路径"	通过启动参数安装APK文件
+		注意:参数安装时,不能有包名启动名存在
+	driver.install_app(app_path) app_path：脚本机器中APK文件路径
+	driver.is_app_installed(bundle_id) bundle_id: 可以传入app包名,返回结果为True(已安装) / False(未安装)
+	driver.remove_app(app_id) app_id：需要卸载的app包名
+	
+
+pytest:
+	类级别:
+		setup_class		前置准备
+		teardown_class	后置处理
+		一个类开始结束都只执行一次
+	函数级别:
+		setup		前置准备
+		teardown	后置处理
+		有几个函数就执行几次
+unittest:
+	类级别:
+		@Classmethod	修饰类方法
+		setUpClass()	前置准备
+		tearDownClass	后置处理
+		类上面一定要有修饰 一个类开始结束都只执行一次
+	函数级别:
+		setUp		前置准备
+		tearDown	后置处理
+		有几个函数就执行几次
+		
+html报告:
+	pytest.ini文件	addopts=-s --html=指定目录
+	
+ordering执行顺序:
+	pip install pytest-ordering
+	标记被测函数 @pytest.mark.run(order=x)
+	值全为正数或为负数时,值越小,有先级越高
+	正数负数同时存在,正数优先级高
+	
+rerunfailures失败重试
+	pytest.ini文件	addopts=-s --html=指定目录 --reruns 重试次数
+	
+fixture工厂函数:
+	1.通过参数传递@pytest.fixture(),先修饰一个函数,然后把函数名作为参数放到另一个函数里面,修饰的函数就先执行
+	2.放到函数上面 @pytest.mark.usefixtures("方法名")   函数之前之前会执行工厂函数
+		放到类上面 @pytest.mark.usefixtures("方法名")   类里面的函数之前会执行工厂函数
+	3.变成类函数  类似setup函数@pytest.fixture(scope="class",autouse=True)
+		注意: 当修饰成类方法时,前面修饰语句都要加上
+				当后面有autouse=True时,前面两个修饰语句就可以省略
+	返回值:
+		@pytest.fixture(params=[只能是列表])
+		def before(request)
+		return request.param
+		
+skipif跳过函数:
+	@pytest.mark.skipif(条件,reason="跳过原因")
+	或者 @pytest.mark.skipif(函数名(self=函数名)==值,reason="跳过原因")
+	
+parametrize参数化:
+	@pytest.mark.parametrize("name",["zhangsan"])
+	def 函数名(self,name)
+	参数名:
+		单个参数名:name 使用字符串 如:"name"
+		多个参数名:name,password 使用一个字符串 如:"name,password"
+	参数值:
+		单个参数值和多个参数值,值都为列表 
+		多个参数值,值得类型为列表嵌套元祖 如:[(zhangsan,123),(lisi,321)]
+	注意:设置的参数引用名称,必须和函数内使用参数名相同
+	
+断言:
+	assert 2==2
+	assert "ha" in "hello"
+	assert True
+	
+统一入口类:
+	1.创建一个page_in.py文件
+	2.定义一个类,然后定义很多个页面对象
+	# 统一入口类
+	class PageIn():
+		# 获取driver
+		def __init__(self):
+			self.driver=get_driver()
+
+		# 获取分类页面方法
+		def page_fenlei(self):
+			return PageFenlei(self.driver)
+
+		# 获取登录页面方法
+		def page_login(self):
+			return PageLogin(self.driver)
+			
+yaml文件存储:
+	写法:键名: 键值
