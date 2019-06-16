@@ -144,3 +144,33 @@ parametrize参数化:
 			
 yaml文件存储:
 	写法:键名: 键值
+	口诀:值为字典或列表,空格+换行+缩进
+	参数化:
+		问题:
+			1.读取出来的数据格式为字典
+			2.有3组数据,3个字典
+		解决:
+			1.新建空列表,将读取的数据放到空列表
+			2.使用字典values方法,获取键值
+	def read_yaml():
+		list=[]
+		filename="./bainianaolai/data/data.yaml"
+		with open(filename, "r",encoding="utf-8") as f:
+			data = yaml.load(f)
+			for i in data.values():
+				list.append((i.get("username"),i.get("pwd")))
+			return list
+			
+allure报告:
+	1.pytest.ini文件	addopts=-s --alluredir report
+	2.运行pytest文件,生成xml报告
+	3.使用插件将xml报告转换成html 命令:allure generate report / -o report/html -c
+	报告标题:
+		@allure.step("报告标题内容")---写在测试函数上面
+		 allure.attach("步骤过程","")---写在函数里面里面,两个空不能省略,可以为none
+	失败截图写入报告:
+		with open("路径"."rb") as f:
+			allure.attach("失败原因: ",f.read(),allure.attch_type.PNG)
+	严重级别:
+		@pytest.allure.severity(pytest.allure.severity_level.BLOCKER)
+		Severity：严重级别(BLOCKER,CRITICAL,NORMAL,MINOR,TRIVIAL)---级别越来越低
