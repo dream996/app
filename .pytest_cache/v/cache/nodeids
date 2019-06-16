@@ -1,3 +1,8 @@
 [
-  "bainianaolai/scripts/test_bainianaolai.py::TestBaiNianAoLai::()::test_login"
+  "bainianaolai/scripts/test_bainianaolai.py::TestBaiNianAoLai::()::test_canshu",
+  "bainianaolai/scripts/test_bainianaolai.py::TestBaiNianAoLai::()::test_fenlei",
+  "bainianaolai/scripts/test_bainianaolai.py::TestBaiNianAoLai::()::test_login[18571772032-123456]",
+  "bainianaolai/scripts/test_bainianaolai.py::TestBaiNianAoLai::()::test_login[18571772033-1234567]",
+  "bainianaolai/scripts/test_bainianaolai.py::TestBaiNianAoLai::()::test_login[18571772032-12345689]",
+  "bainianaolai/scripts/test_bainianaolai.py::TestBaiNianAoLai::()::test_login[18571772035-123456]"
 ]

@@ -1,1 +1,11 @@
-{}
+{
+  "bainianaolai/scripts/test_bainianaolai.py::TestBaiNianAoLai::()": true,
+  "bainianaolai/scripts/test_bainianaolai.py::TestBaiNianAoLai::()::test_login[123-123]": true,
+  "bainianaolai/scripts/test_bainianaolai.py::TestBaiNianAoLai::()::test_login[123-321]": true,
+  "bainianaolai/scripts/test_bainianaolai.py::TestBaiNianAoLai::()::test_login[18571772032-1234567]": true,
+  "bainianaolai/scripts/test_bainianaolai.py::TestBaiNianAoLai::()::test_login[18571772032-12345689]": true,
+  "bainianaolai/scripts/test_bainianaolai.py::TestBaiNianAoLai::()::test_login[18571772032-1234568]": true,
+  "bainianaolai/scripts/test_bainianaolai.py::TestBaiNianAoLai::()::test_login[18571772032-12345]": true,
+  "bainianaolai/scripts/test_bainianaolai.py::TestBaiNianAoLai::()::test_login[18571772033-1234567]": true,
+  "bainianaolai/scripts/test_bainianaolai.py::TestBaiNianAoLai::()::test_login[18571772035-123456]": true
+}
