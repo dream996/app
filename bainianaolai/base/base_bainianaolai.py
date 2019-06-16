@@ -19,12 +19,11 @@ class BaseBaiNianAoLai():
 
     # 滑动
     def base_swipe(self):
-        self.driver.swipe(838, 2275, 838, 382, duration=2000)
+        self.driver.swipe(838, 2275, 838, 382, duration=1000)
 
     # 输入
     def base_input(self, loc, val):
         # 清空
         el = self.base_find_element(loc)
-        el.clear()
-        time.sleep(1)
         el.send_keys(val)
+

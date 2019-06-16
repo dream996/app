@@ -1,16 +1,19 @@
 import os
 import sys
-import time
 
 import pytest
-from selenium.webdriver.common.by import By
 
 sys.path.append(os.getcwd())
+import time
+
+from selenium.webdriver.common.by import By
+
 
 from bainianaolai.base.get_driver import get_driver
 from bainianaolai.page.page_bainianaolai import PageBaiNianAoLai
 
-
+# 修饰类时,里面的函数执行之前,都会运行工厂函数
+# @pytest.mark.usefixtures("putong")
 class TestBaiNianAoLai:
 
     # 类级别  一个类开始结束都只执行一次
@@ -21,8 +24,20 @@ class TestBaiNianAoLai:
     def teardown(self):
         self.bainianaolai.driver.quit()
 
-    @pytest.mark.run(order=2)
-    def test_bainianaolai(self):
+    # 普通函数修饰成工厂函数
+    # 3.变成类函数  类似setup函数
+    @pytest.fixture(scope="class",autouse=True)
+    def putong(self):
+        print("普通函数变成工厂函数")
+
+    # 1.以参数的形式传递
+    @pytest.mark.run(order=3)
+    def test_canshu(self,putong):
+        print("以参数传递")
+
+    # 执行顺序
+    @pytest.mark.run(order=1)
+    def test_fenlei(self):
         self.bainianaolai.page_click_close()
         # 分类
         self.bainianaolai.page_fenlei()
@@ -30,11 +45,14 @@ class TestBaiNianAoLai:
         # 滑动
         for i in range(5):
             self.bainianaolai.page_swipe()
-        time.sleep(2)
+        print("资源执行成功")
 
     # 登录退出流程
-    @pytest.mark.run(order=1)
-    def test_login(self, name="18571772032", pwd="123456"):
+    # 执行顺序
+    @pytest.mark.run(order=2)
+    # 2.以函数来传递
+    # @pytest.mark.usefixtures("putong")
+    def test_login(self,name="18571772032", pwd="123456"):
         # 断言用例是否能执行成功
         try:
             self.bainianaolai.page_click_close()

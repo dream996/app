@@ -3,7 +3,7 @@ from bainianaolai.base.base_bainianaolai import BaseBaiNianAoLai
 
 
 class PageBaiNianAoLai(BaseBaiNianAoLai):
-
+    # 点击关闭
     def page_click_close(self):
         self.base_click(page.test__click_close)
 
@@ -53,12 +53,3 @@ class PageBaiNianAoLai(BaseBaiNianAoLai):
     # 确认
     def page_yes(self):
         self.base_click(page.test_yes)
-
-    def page_toast(self):
-        # 获取toast窗口
-        toast_message="登录密码错误"
-        toast=self.base_find_element(page.test_toast)
-        print("1")
-        print(toast)
-        print("2")
-        assert toast == toast_message
