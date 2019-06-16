@@ -2,13 +2,13 @@ login_test001:
   username: "18571772032"
   pwd: "123456"
 login_test002:
-  username: "18571772033"
-  pwd: "1234567"
+  username: "18571772032"
+  pwd: "123456"
 login_test003:
   username: "18571772032"
-  pwd: "12345689"
+  pwd: "123456"
 login_test004:
-  username: "18571772035"
+  username: "18571772032"
   pwd: "123456"
 
 #[1,2,[3,4,5],[7,8,9]]
