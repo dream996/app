@@ -25,5 +25,5 @@ class BaseBaiNianAoLai():
     def base_input(self, loc, val):
         # 清空
         el = self.base_find_element(loc)
+        el.clear()
         el.send_keys(val)
-

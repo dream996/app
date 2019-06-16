@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 # 关闭弹窗
 test__click_close = By.ID, "com.yunmall.lc:id/img_close"
 # 分类
-test_fenlei = By.ID, "com.yunmall.lc:id/tab_category"
+test_click_fenlei = By.ID, "com.yunmall.lc:id/tab_category"
 # 家居
 test_jiaju = By.CLASS_NAME, "android.widget.TextView"
 # 我的
@@ -19,7 +19,7 @@ test_name = By.ID, "com.yunmall.lc:id/logon_account_textview"
 # 输入密码
 test_pwd = By.ID, "com.yunmall.lc:id/logon_password_textview"
 # 点击登录
-test_login = By.ID, "com.yunmall.lc:id/logon_button"
+test_click_login = By.ID, "com.yunmall.lc:id/logon_button"
 # 点击设置
 test_setting = By.ID, "com.yunmall.lc:id/ymtitlebar_left_btn_image"
 # 点击退出
